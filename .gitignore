@@ -1,3 +1,4 @@
 .env
 hello.py
 **/__pycache__/**
+venv
