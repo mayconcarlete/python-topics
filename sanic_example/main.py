@@ -16,6 +16,4 @@ async def get_all(request):
 
 
 if __name__ == '__main__':
-    # loop = asyncio.get_event_loop()
-    # loop.run_until_complete(app.run(host='0.0.0.0', port=3000, auto_reload=True))
     app.run(host='0.0.0.0', port=3000, auto_reload=True)
