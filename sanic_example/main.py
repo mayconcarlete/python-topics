@@ -8,9 +8,10 @@ app = Sanic('my_sanic_app')
 
 # load_routes(app)
 # load_multiple_requests(app)
+
 @app.get('/multiple')
 async def get_all(request):
-    body = make_request()
+    body = await make_request()
     return json(body)
 
 
