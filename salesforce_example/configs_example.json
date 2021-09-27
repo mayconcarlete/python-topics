@@ -1,0 +1,6 @@
+{
+    "security_token": "foo",
+    "username": "foo@force.com",
+    "password": "foo",
+    "domain": "login_or_test"
+}

@@ -3,3 +3,4 @@ hello.py
 **/__pycache__/**
 venv
 env
+salesforce_example/configs.json
