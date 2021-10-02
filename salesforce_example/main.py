@@ -18,6 +18,7 @@ print(session_d, instance)
 # fazendo login com usuario e password (nao recomendado)
 # sf = Salesforce(username=username, password=password, security_token=security_token)
 
+#             print(f'Property name: {element}: value: {getattr(sf, element)}')
 # passando uma session como login (recomendado)
 sf = Salesforce(instance=instance, session_id=session_d)
 # print(sf)
@@ -25,7 +26,6 @@ sf = Salesforce(instance=instance, session_id=session_d)
 # for element in dir(sf):
 #     if not element.startswith('__'):
 #         if isinstance(getattr(sf, element), str):
-#             print(f'Property name: {element}: value: {getattr(sf, element)}')
 
 # print(sf.session_id)
 # example = sf.Contact.create({'LastName':'Smith','Email':'example@example.com'})
@@ -39,8 +39,6 @@ sf = Salesforce(instance=instance, session_id=session_d)
 # df_sobjects = pd.DataFrame(metadata_org['sobjects'])
 # print(df_sobjects.head())
 # df_sobjects.to_csv('org_metadata_sobjects.csv', index=False)
-# os principais que ele olha nesse CSV são os campos name e label
-
 # Metodo 1
 # account = sf.account
 # print(account)
@@ -62,3 +60,12 @@ sf = Salesforce(instance=instance, session_id=session_d)
 # account_metadata = account.metadata()
 # df_account_metadata = pd.DataFrame(account_metadata.get('objectDescribe'))
 # df_account_metadata.to_csv('account metadata.csv', index=False)
+
+
+# ---------------------------------------------- #
+# query a contact
+# querySOQL = """SELECT Id, name, email FROM Contact where name = 'Smith'"""
+
+# result = sf.query(querySOQL)
+# print(result.keys())
+# print(result)
