@@ -8,5 +8,7 @@ security_token = login_info['security_token']
 
 sf = Salesforce(username=username, password=password, security_token=security_token)
 
-print(sf)
-
+print('####Session')
+print(sf.auth_type)
+print('###SessionID')
+print(sf.session_id)
