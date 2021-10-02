@@ -4,3 +4,4 @@ hello.py
 venv
 env
 salesforce_example/configs.json
+salesforce_example/org_metadata_sobjects.csv
