@@ -4,75 +4,46 @@ from simple_salesforce import Salesforce
 from simple_salesforce.api import SFType
 from simple_salesforce.login import SalesforceLogin
 
+
+from pagarme_account_client import AccountPagarmeClient
+
 login_info = json.load(open('configs.json'))
 username = login_info['username']
 password = login_info['password']
 security_token = login_info['security_token']
 domain = login_info['domain']
 
+session_id, instance = SalesforceLogin(username=username, password=password, security_token=security_token)
 
-<<<<<<< HEAD
-print('####Session')
-print(sf.auth_type)
-print('###SessionID')
-print(sf.session_id)
-=======
-#get session token
-session_d, instance  =  SalesforceLogin(username, password, security_token, domain)
-print(session_d, instance)
-
-# fazendo login com usuario e password (nao recomendado)
-# sf = Salesforce(username=username, password=password, security_token=security_token)
-
-#             print(f'Property name: {element}: value: {getattr(sf, element)}')
-# passando uma session como login (recomendado)
-sf = Salesforce(instance=instance, session_id=session_d)
-# print(sf)
-
-# for element in dir(sf):
-#     if not element.startswith('__'):
-#         if isinstance(getattr(sf, element), str):
-
-# print(sf.session_id)
-# example = sf.Contact.create({'LastName':'Smith','Email':'example@example.com'})
-# print(example)
-
-# metadata_org = sf.describe()
-# print(metadata_org)
-# print(type(metadata_org))
-# print(metadata_org.keys())
-# print(metadata_org['sobjects'])
-# df_sobjects = pd.DataFrame(metadata_org['sobjects'])
-# print(df_sobjects.head())
-# df_sobjects.to_csv('org_metadata_sobjects.csv', index=False)
-# Metodo 1
-# account = sf.account
-# print(account)
-# print(type(account))
-# account_metadata = account.describe()
-# print(account_metadata.keys())
-# df_metadata_fields = pd.DataFrame(account_metadata.get('fields'))
-# print(df_metadata_fields)
-
-# method 1
-# project__c = sf.Project__c
-# metadata_project = project__c.metadata()
-# df_project_metadata = pd.DataFrame(metadata_project.get('objectDescribe'))
-# df_project_metadata.to_csv('project metadata.csv', index=False)
+sf = Salesforce(session_id=session_id, instance=instance)
 
 
-# method 2
-# account = SFType('account', session_id, instance)
-# account_metadata = account.metadata()
-# df_account_metadata = pd.DataFrame(account_metadata.get('objectDescribe'))
-# df_account_metadata.to_csv('account metadata.csv', index=False)
+# Example
+new_client = AccountPagarmeClient(
+    Name="Maykerosps",
+    RecordTypeId="0125f000000cW7iAAE",
+    AffiliationId__c="abc_12234",
+    BillingStreet__c="rua jair coelho",
+    BillingCity__c="sao mateus",
+    BillingState__c="ES",
+    BillingPostalCode__c="29933640",
+    BillingCountry__c= "Brasil",
+    Phone="33218600",
+    cnpj__c="13857167700",
+    cpf_cnpj__c="10000111/1000",
+    ClientStatus__c="Active",
+    AccountStatus__c="Active",
+    legal_name__c="Maykerops",
+    Razao_Social__c="Maykerops SA",
+    BankAccountBankName__c="201",
+    BankAccountType__c="any",
+    BankAccountAgencyNumber__c= "0717",
+    BankAccountAgencyDigit__c="023",
+    BankAccountNumber__c="004122",
+    BankAccountDigit__c="8",
+    sales_channel_name__c="foo"
+)
 
+response = sf.Account.create(new_client.to_dict())
 
-# ---------------------------------------------- #
-# query a contact
-# querySOQL = """SELECT Id, name, email FROM Contact where name = 'Smith'"""
-
-# result = sf.query(querySOQL)
-# print(result.keys())
-# print(result)
->>>>>>> 4df418e0909cbdd51c6b71640818a624a0a23200
+print(response)

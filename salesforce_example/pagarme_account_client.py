@@ -1,22 +1,23 @@
 import json
 from dataclasses import dataclass, asdict
 
+    # ParentId: str
+
 @dataclass
 class AccountPagarmeClient:
     Name: str
-    ParentId: str
     RecordTypeId: str
     AffiliationId__c: str
-    BillingStreet: str
-    BillingCity: str
-    BillingState: str
-    BillingPostalCode: str
-    BillingCountry: "Brasil"
+    BillingStreet__c: str
+    BillingCity__c: str
+    BillingState__c: str
+    BillingPostalCode__c: str
+    BillingCountry__c: str
     Phone: str
     cnpj__c: str
     cpf_cnpj__c: str
-    ClientStatus__c: "Active"
-    AccountStatus__c: "Active"
+    ClientStatus__c: str
+    AccountStatus__c: str
     legal_name__c: str
     Razao_Social__c: str
     BankAccountBankName__c: str
@@ -27,5 +28,5 @@ class AccountPagarmeClient:
     BankAccountDigit__c: str
     sales_channel_name__c: str
 
-    def __str__(self):
+    def to_dict(self):
         return asdict(self)
