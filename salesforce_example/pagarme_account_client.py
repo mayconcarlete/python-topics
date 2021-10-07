@@ -6,6 +6,7 @@ from dataclasses import dataclass, asdict
 @dataclass
 class AccountPagarmeClient:
     Name: str
+    ParentId: str
     RecordTypeId: str
     AffiliationId__c: str
     BillingStreet__c: str

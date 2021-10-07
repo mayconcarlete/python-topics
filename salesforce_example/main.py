@@ -21,6 +21,7 @@ sf = Salesforce(session_id=session_id, instance=instance)
 # Example
 new_client = AccountPagarmeClient(
     Name="Maykerosps",
+    ParentId='0035f000004htxNAAQ',
     RecordTypeId="0125f000000cW7iAAE",
     AffiliationId__c="abc_12234",
     BillingStreet__c="rua jair coelho",
@@ -46,4 +47,23 @@ new_client = AccountPagarmeClient(
 
 response = sf.Account.create(new_client.to_dict())
 
+# O que um insert retorna
 print(response)
+
+# fazendo uma query para buscar os dados
+
+# query = f"""
+#         SELECT "Id", "cnpj__c", "ParentId" from "Account"
+#         where
+#         "AffiliationId__c" = '{new_client.AffiliationId__c}' and
+#         "RecordTypeId" = '{new_client.RecordTypeId}'
+#         """
+
+
+# Pega os campos
+# account_model = sf.Account.describe()
+
+# fields = account_model.get('fields')
+# for field in fields:
+#     field_name = field.get('name')
+#     print(field_name)
